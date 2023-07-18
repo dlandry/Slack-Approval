@@ -8,17 +8,20 @@ import json
 import os
 import isodate
  
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Set API key and build YouTube service
 # API_KEY = 'AIzaSyBtxL4zudwYcFHOAROo953Q_U3HTcTXf8E'
-API_KEY = 'AIzaSyDAuo9wXO5tdQPx3GOcj41k-MZqe3bfZiA'
+API_KEY = os.getenv('YOUTUBE_API_KEY')
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=API_KEY)
 
 
 def download_transcript(video_id):
-    api_key = 'AIzaSyDAuo9wXO5tdQPx3GOcj41k-MZqe3bfZiA'  # Replace with your own API key
+    api_key = os.getenv('YOUTUBE_API_KEY')  # Replace with your own API key
     transcript = YouTubeTranscriptApi.get_transcript(video_id)
 
     # Save the transcript into a JSON file with the video_id as the file name
@@ -30,7 +33,7 @@ def download_transcript(video_id):
 
 
 def download_thumbnail(video_id):
-    api_key = 'AIzaSyDAuo9wXO5tdQPx3GOcj41k-MZqe3bfZiA' # Replace with your own API key
+    api_key = os.getenv('YOUTUBE_API_KEY') # Replace with your own API key
 
     # Construct the URL to fetch video details including thumbnail
     url = f"https://www.googleapis.com/youtube/v3/videos?id={video_id}&part=snippet&key={api_key}"
