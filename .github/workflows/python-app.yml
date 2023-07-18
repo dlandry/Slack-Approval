@@ -37,7 +37,7 @@ jobs:
     - name: Run app
       run: |
         # python app.py
-        uses: actions/setup-python@v2
+        # uses: actions/setup-python@v2
         python youtube.py
     # - name: Test with pytest
     #   run: |
